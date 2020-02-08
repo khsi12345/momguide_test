@@ -1,11 +1,11 @@
-import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React from "react";
+import Head from "next/head";
+import Nav from "../components/nav";
 
 const Home = () => (
   <div>
     <Head>
-      <title>Home</title>
+      {/* <title>Home</title> */}
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
@@ -83,6 +83,6 @@ const Home = () => (
       }
     `}</style>
   </div>
-)
+);
 
-export default Home
+export default Home;
