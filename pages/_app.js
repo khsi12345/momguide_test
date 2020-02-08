@@ -17,13 +17,13 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
+      <>
         <GlobalStyle />
         <Head>
           <title>맘 가이드</title>
         </Head>
         <Component {...pageProps} />
-      </Container>
+      </>
     );
   }
 }
