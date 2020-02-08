@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ProductFilter from "../components/ProductFilter";
+
 const Home = () => {
   const [sortKind, setSortKind] = useState();
   const click = e => {
@@ -34,6 +36,7 @@ const Home = () => {
                   </ProductSortBox>
                 </ProductSortWrap>
               </Wrapping>
+              <ProductFilter />
             </PaddingWrap>
           </WipDiv>
         </PaddingWrap>
