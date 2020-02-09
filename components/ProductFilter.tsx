@@ -13,9 +13,14 @@ const ProductFilter = () => {
   )
 }
 const Wrap = styled.div`
-display : flex;
-align-items: center;
-height : 45px;
 margin: 20px 0;
+display : inline-flexbox;
+height : 45px;
+align-items: center;
+overflow-x: scroll;
+::-webkit-scrollbar {
+  display: none;
+}
+-ms-overflow-style: none;
 `;
 export default ProductFilter;
