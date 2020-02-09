@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ProductFilter from "../components/ProductFilter";
 import ProductItem from "../components/ProductItem";
+import { device } from "../components/DeviceInfo";
 
 const Home = () => {
   const [sortKind, setSortKind] = useState();
@@ -67,9 +68,12 @@ const ProductKindWrap = styled.div`
   margin-bottom: 0.5rem;
   font-size: 20px;
   color: grey;
-  letter-spacing: 1px;
   line-height: 1.2;
   font-weight: 500;
+
+  @media ${device.mobile} {
+    font-size: 14px;
+  }
 `;
 const ProductKind = styled.header`
   display: inline-block;
@@ -87,6 +91,13 @@ const ProductSortBox = styled.div`
   color: #4d4d4d;
   outline: none;
   border-bottom: ${props => (props.click ? "1px solid #32b8a4" : "none")};
+
+  @media ${device.mobile} {
+    width: 48px;
+  }
+  @media ${device.bigMobile} {
+    width: 70px;
+  }
 `;
 const ProductSorting = styled.a`
   width: 70px;
