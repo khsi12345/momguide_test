@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import data from "../data/data";
 import Star from '../components/Star';
 import { device } from '../components/DeviceInfo';
 
-const ProductItem = () => {
+const ProductItem = ({ sortData }: any) => {
 
   return (
     <>
       {
-        data && data.map(ele => {
+        sortData && sortData.map((ele: any) => {
           return (
             <ItemWrap>
               <ItemLink>
