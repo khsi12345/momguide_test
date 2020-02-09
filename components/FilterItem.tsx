@@ -15,7 +15,6 @@ const FilterItem: React.FC<Props> = ({ text, rank }) => {
   const click = (e: any) => {
     setChecked(e.target.checked)
   }
-  console.log(checked);
   return (
     <ItemWrap>
       <ItemLabel onClick={click}>
