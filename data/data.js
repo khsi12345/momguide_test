@@ -70,7 +70,7 @@ const productList = [
     name: "FLOOR CLEANER(바닥클리너)",
     brand: "Better Life",
     viewCnt: 77,
-    starPoint: 0,
+    starPoint: 1,
     created_at: "2017-05-30 13:00:09",
     includeCare: false,
     imgUrl:
@@ -147,7 +147,7 @@ const productList = [
     name: "V.DT 레더워시 웨어 섬유유연제",
     brand: "V.DT(브이디티)",
     viewCnt: 155,
-    starPoint: 0,
+    starPoint: 1,
     created_at: "2015-11-19 13:00:09",
     includeCare: true,
     imgUrl:
@@ -202,7 +202,7 @@ const productList = [
     name: "V.DT 여성속옷전용 효소 세제",
     brand: "V.DT(브이디티)",
     viewCnt: 50,
-    starPoint: 0,
+    starPoint: 1,
     created_at: "2014-01-22 13:00:09",
     includeCare: true,
     imgUrl:
@@ -213,7 +213,7 @@ const productList = [
     name: "무첨가 주방용 가루비누",
     brand: "강청",
     viewCnt: 118,
-    starPoint: 0,
+    starPoint: 1,
     created_at: "2014-02-19 13:00:09",
     includeCare: true,
     imgUrl:
