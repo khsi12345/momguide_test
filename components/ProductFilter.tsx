@@ -9,6 +9,7 @@ const ProductFilter = () => {
       <FilterItem text="등급 성분 보충" rank />
       <FilterItem text="친환경 인증 제품" />
       <FilterItem text="성분 공개 제품" />
+      <FilterItem text="주의 성분 제외" />
     </Wrap>
   )
 }
