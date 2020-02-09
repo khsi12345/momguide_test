@@ -15,7 +15,7 @@ const ProductFilter = () => {
 const Wrap = styled.div`
 display : flex;
 align-items: center;
-height : 40px;
-margin: 20px 0 0 20px;
+height : 45px;
+margin: 20px 0;
 `;
 export default ProductFilter;
