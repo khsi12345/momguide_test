@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ProductFilter from "../components/ProductFilter";
+import ProductItem from "../components/ProductItem";
 
 const Home = () => {
   const [sortKind, setSortKind] = useState();
@@ -37,6 +38,9 @@ const Home = () => {
                 </ProductSortWrap>
               </Wrapping>
               <ProductFilter />
+              <ProductItemWrap>
+                <ProductItem />
+              </ProductItemWrap>
             </PaddingWrap>
           </WipDiv>
         </PaddingWrap>
@@ -45,7 +49,7 @@ const Home = () => {
   );
 };
 const Page = styled.div`
-  width: 980px;
+  max-width: 980px;
   margin: 70px auto;
   overflow: hidden;
 `;
@@ -67,7 +71,7 @@ const ProductKindWrap = styled.div`
   line-height: 1.2;
   font-weight: 500;
 `;
-const ProductKind = styled.title`
+const ProductKind = styled.header`
   display: inline-block;
 `;
 const ProductCount = styled.span``;
@@ -92,6 +96,10 @@ const ProductSorting = styled.a`
   :hover {
     color: #4d4d4d;
   }
+`;
+const ProductItemWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export default Home;
