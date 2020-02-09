@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import data from "../data/data";
+import Star from '../components/Star';
 import { device } from '../components/DeviceInfo';
 
 const ProductItem = () => {
+
   return (
     <>
       {
-        data.map(ele => {
+        data && data.map(ele => {
           return (
             <ItemWrap>
               <ItemLink>
@@ -18,7 +20,10 @@ const ProductItem = () => {
                   </ImageBox>
                   <ImageSideGard>
                     <ItemInfoImageWrap>
-                      <ItemInfoImage />
+                      {
+                        ele.includeCare &&
+                        <ItemInfoImage src={"https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6c2f30a5-879c-4ebd-880d-233bdb694ddc%2Fcaution_red_.png?table=block&id=e9365c92-6756-48ea-9599-6c7dfb3eefe2&width=120&cache=v2"} />
+                      }
                     </ItemInfoImageWrap>
                   </ImageSideGard>
                 </ItemImageWrap>
@@ -34,12 +39,12 @@ const ProductItem = () => {
                   <RatingContentsWrap>
                     <RatingContentsBox>
                       <StarImageWrap>
-                        <Star />
+                        <Star point={ele.starPoint} />
                       </StarImageWrap>
                       <RateNumber>0</RateNumber>
                       <ReviewCount>
                         (0)
-              </ReviewCount>
+                      </ReviewCount>
                     </RatingContentsBox>
                   </RatingContentsWrap>
                 </ItemContentsWrap>
@@ -58,6 +63,7 @@ const ItemWrap = styled.div`
   @media ${device.mobile} {
     margin: 0 0 20.5px 0;
     width: 100%;
+    /* max-width: 336px; */
   }
   @media ${device.tablet} {
     margin: 0 10px 20.5px;
@@ -76,9 +82,10 @@ const ItemImageWrap = styled.div`
 `;
 const ImageSideGard = styled.div`
   padding: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
   width: 17%;
   height: 100%;
-  display: inline-block;
 `;
 const ImageBox = styled.figure`
   /* width: 66%; */
@@ -136,14 +143,16 @@ const RatingContentsWrap = styled.div`
 `;
 const RatingContentsBox = styled.div`
   margin: 15px auto;
+  display: flex;
 `;
 const StarImageWrap = styled.figure`
   margin-right: 5px;
+  display: flex;
 `;
-const Star = styled.img`
-  width: 15px;
-  height: 15px;
-`;
+// const Star = styled.img`
+//   width: 15px;
+//   height: 15px;
+// `;
 const RateNumber = styled.span`
   margin: 0 5px;
   font-size: 22px;
