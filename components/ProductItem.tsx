@@ -8,7 +8,6 @@ const ProductItem = () => {
     <>
       {
         data.map(ele => {
-          console.log(ele)
           return (
             <ItemWrap>
               <ItemLink>
@@ -61,7 +60,7 @@ const ItemWrap = styled.div`
     width: 100%;
   }
   @media ${device.tablet} {
-  margin: 0 10px 20.5px;
+    margin: 0 10px 20.5px;
     width: 47.2%;
   }
   @media ${device.bigTablet} {
