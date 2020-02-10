@@ -4,7 +4,6 @@ import Star from '../components/Star';
 import { device } from '../components/DeviceInfo';
 
 const ProductItem = ({ sortData }: any) => {
-
   return (
     <>
       {
@@ -58,14 +57,18 @@ const ProductItem = ({ sortData }: any) => {
 const ItemWrap = styled.div`
   height: 420px;
   border: 0.5px solid #979797;
-
+  margin-right: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  &:hover {
+    transform : scale(1.02);
+    box-shadow : 1px 1px 2px;
+  }
   @media ${device.mobile} {
-    margin: 0 0 20.5px 0;
     width: 100%;
-    /* max-width: 336px; */
+    max-width: 336px;
   }
   @media ${device.tablet} {
-    margin: 0 10px 20.5px;
     width: 47.2%;
   }
   @media ${device.bigTablet} {
@@ -82,7 +85,7 @@ const ItemImageWrap = styled.div`
 const ImageSideGard = styled.div`
   padding: 20px 20px 0 0;
   display: flex;
-  align-items: center;
+  align-items: top;
   width: 17%;
   height: 100%;
 `;
@@ -128,8 +131,7 @@ const TextContentsName = styled.header`
   max-height: 68px;
   font-size: 19px;
   font-weight: 700;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  word-break : keep-all;
   color: #000;
   line-height: 1.2;
 `;
