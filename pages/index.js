@@ -42,7 +42,6 @@ const Home = () => {
       setSortData(data);
     }
   };
-  console.dir(sortKind);
   function getCurrentScrollPercentage() {
     return (
       ((window.scrollY + window.innerHeight) / document.body.clientHeight) * 100
