@@ -5,13 +5,12 @@ interface Props {
   text: string;
   rank?: any;
   click?: any;
-  filterRef?: any;
 }
 interface CustomInputType {
   checking: boolean;
 }
 
-const FilterItem: React.FC<Props> = ({ text, rank, click, filterRef }) => {
+const FilterItem: React.FC<Props> = ({ text, rank, click }) => {
   const [checked, setChecked] = useState<boolean>(false);
 
   const toggle = (value: boolean) => {
@@ -23,7 +22,6 @@ const FilterItem: React.FC<Props> = ({ text, rank, click, filterRef }) => {
         text === "주의 성분 제외" && click((e.target as HTMLInputElement).checked, text)
         toggle((e.target as HTMLInputElement).checked)
       }}
-        ref={filterRef}
       >
         <Input type="checkbox" />
         <CustomInput checking={checked} />
