@@ -12,7 +12,6 @@ const ProductFilter = ({ clicks, checked, toggle, filterRef }: any) => {
       <FilterItem
         text="주의 성분 제외"
         click={clicks}
-        filterRef={filterRef}
       />
     </Wrap>
   )
