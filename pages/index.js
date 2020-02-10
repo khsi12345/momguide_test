@@ -8,21 +8,16 @@ import { device } from "../components/DeviceInfo";
 const Home = () => {
   const [sortKind, setSortKind] = useState();
   const [sortData, setSortData] = useState([...data.slice(0, 10)]);
-  const [filterName, setFilterName] = useState();
-  const filterRef = useRef();
   let idx = useRef(10);
-  const sorting = func => {
-    console.log(sortKind);
-    return func;
-  };
+
   const sortingClick = e => {
     setSortKind(e.target.textContent);
     if (e.target.textContent === "최신순") {
       sortData.sort(createdAtSorting);
     } else if (e.target.textContent === "조회순") {
-      sortData.sort(sorting(viewCountSorting));
+      sortData.sort(viewCountSorting);
     } else if (e.target.textContent === "별점순") {
-      sortData.sort(sorting(starPointSorting));
+      sortData.sort(starPointSorting);
     }
   };
   const createdAtSorting = (a, b) => {
@@ -36,27 +31,24 @@ const Home = () => {
   const starPointSorting = (a, b) => {
     return b["starPoint"] - a["starPoint"];
   };
-  const filteringClick = (checkedValue, text) => {
+  const filteringClick = checkedValue => {
     const resultData = sortData.filter(item => {
       return item.includeCare === false;
     });
 
     if (checkedValue) {
       setSortData(resultData);
-      setFilterName(text);
     } else {
       setSortData(data);
-      setFilterName(null);
     }
   };
-  console.dir(filterRef.current);
+  console.dir(sortKind);
+  function getCurrentScrollPercentage() {
+    return (
+      ((window.scrollY + window.innerHeight) / document.body.clientHeight) * 100
+    );
+  }
   const handleScroll = () => {
-    function getCurrentScrollPercentage() {
-      return (
-        ((window.scrollY + window.innerHeight) / document.body.clientHeight) *
-        100
-      );
-    }
     if (getCurrentScrollPercentage() > 90) {
       let result = data.slice(idx.current, idx.current + 10);
       setSortData(sortData => sortData.concat(result));
@@ -68,7 +60,6 @@ const Home = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  console.log(sortData);
   return (
     <Page>
       <ProductWrap>
@@ -98,7 +89,7 @@ const Home = () => {
                   </ProductSortBox>
                 </ProductSortWrap>
               </Wrapping>
-              <ProductFilter clicks={filteringClick} filterRef={filterRef} />
+              <ProductFilter clicks={filteringClick} />
               <ProductItemWrap>
                 <ProductItem sortData={sortData} />
               </ProductItemWrap>
