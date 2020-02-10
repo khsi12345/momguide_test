@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import FilterItem from './FilterItem';
-const ProductFilter = () => {
+const ProductFilter = ({ clicks, checked, toggle, filterRef }: any) => {
   return (
     <Wrap>
-      <FilterItem text="주의 사항" />
-      <FilterItem text="유해 성분 부족" />
-      <FilterItem text="등급 성분 보충" rank />
-      <FilterItem text="친환경 인증 제품" />
-      <FilterItem text="성분 공개 제품" />
-      <FilterItem text="주의 성분 제외" />
+      <FilterItem text="주의 사항" click={clicks} />
+      <FilterItem text="유해 성분 부족" click={clicks} />
+      <FilterItem text="등급 성분 보충" click={clicks} rank />
+      <FilterItem text="친환경 인증 제품" click={clicks} />
+      <FilterItem text="성분 공개 제품" click={clicks} />
+      <FilterItem
+        text="주의 성분 제외"
+        click={clicks}
+        filterRef={filterRef}
+      />
     </Wrap>
   )
 }
