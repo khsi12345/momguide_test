@@ -1,14 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import data from "../data/data";
 import ProductFilter from "../components/ProductFilter";
 import ProductItem from "../components/ProductItem";
 import { device } from "../components/DeviceInfo";
 
 const Home = () => {
   const [sortKind, setSortKind] = useState();
-  const click = e => {
-    setSortKind(e.target.textContent);
+  const [sortData, setSortData] = useState([...data.slice(0, 10)]);
+  const [filterName, setFilterName] = useState();
+  const filterRef = useRef();
+  let idx = useRef(10);
+  const sorting = func => {
+    console.log(sortKind);
+    return func;
   };
+  const sortingClick = e => {
+    setSortKind(e.target.textContent);
+    if (e.target.textContent === "최신순") {
+      sortData.sort(createdAtSorting);
+    } else if (e.target.textContent === "조회순") {
+      sortData.sort(sorting(viewCountSorting));
+    } else if (e.target.textContent === "별점순") {
+      sortData.sort(sorting(starPointSorting));
+    }
+  };
+  const createdAtSorting = (a, b) => {
+    let dateA = new Date(a["created_at"]).getTime();
+    let dateB = new Date(b["created_at"]).getTime();
+    return dateA > dateB ? 1 : -1;
+  };
+  const viewCountSorting = (a, b) => {
+    return b["viewCnt"] - a["viewCnt"];
+  };
+  const starPointSorting = (a, b) => {
+    return b["starPoint"] - a["starPoint"];
+  };
+  const filteringClick = (checkedValue, text) => {
+    const resultData = sortData.filter(item => {
+      return item.includeCare === false;
+    });
+
+    if (checkedValue) {
+      setSortData(resultData);
+      setFilterName(text);
+    } else {
+      setSortData(data);
+      setFilterName(null);
+    }
+  };
+  console.dir(filterRef.current);
+  const handleScroll = () => {
+    function getCurrentScrollPercentage() {
+      return (
+        ((window.scrollY + window.innerHeight) / document.body.clientHeight) *
+        100
+      );
+    }
+    if (getCurrentScrollPercentage() > 90) {
+      let result = data.slice(idx.current, idx.current + 10);
+      setSortData(sortData => sortData.concat(result));
+      idx.current += 10;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  console.log(sortData);
   return (
     <Page>
       <ProductWrap>
@@ -17,10 +77,10 @@ const Home = () => {
             <PaddingWrap paddingValue={`10px`}>
               <Wrapping>
                 <ProductKindWrap>
-                  <ProductKind>섬유유연제</ProductKind>
-                  <ProductCount>0</ProductCount>개
+                  <ProductKind>판매상품&nbsp;</ProductKind>
+                  <ProductCount>{sortData.length}</ProductCount>&nbsp; 개
                 </ProductKindWrap>
-                <ProductSortWrap onClick={click}>
+                <ProductSortWrap onClick={sortingClick}>
                   <ProductSortBox click={sortKind === "최신순"}>
                     <ProductSorting click={sortKind === "최신순"}>
                       최신순
@@ -38,9 +98,9 @@ const Home = () => {
                   </ProductSortBox>
                 </ProductSortWrap>
               </Wrapping>
-              <ProductFilter />
+              <ProductFilter clicks={filteringClick} filterRef={filterRef} />
               <ProductItemWrap>
-                <ProductItem />
+                <ProductItem sortData={sortData} />
               </ProductItemWrap>
             </PaddingWrap>
           </WipDiv>
@@ -78,7 +138,11 @@ const ProductKindWrap = styled.div`
 const ProductKind = styled.header`
   display: inline-block;
 `;
-const ProductCount = styled.span``;
+const ProductCount = styled.span`
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+`;
 const ProductSortWrap = styled.div``;
 const ProductSortBox = styled.div`
   display: inline-block;
@@ -111,6 +175,7 @@ const ProductSorting = styled.a`
 const ProductItemWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export default Home;
