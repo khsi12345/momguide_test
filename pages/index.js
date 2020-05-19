@@ -9,8 +9,9 @@ const Home = () => {
   const [sortKind, setSortKind] = useState();
   const [sortData, setSortData] = useState([...data.slice(0, 10)]);
   let idx = useRef(10);
+  console.log("test");
 
-  const sortingClick = e => {
+  const sortingClick = (e) => {
     setSortKind(e.target.textContent);
     if (e.target.textContent === "최신순") {
       sortData.sort(createdAtSorting);
@@ -31,8 +32,8 @@ const Home = () => {
   const starPointSorting = (a, b) => {
     return b["starPoint"] - a["starPoint"];
   };
-  const filteringClick = checkedValue => {
-    const resultData = sortData.filter(item => {
+  const filteringClick = (checkedValue) => {
+    const resultData = sortData.filter((item) => {
       return item.includeCare === false;
     });
 
@@ -50,7 +51,7 @@ const Home = () => {
   const handleScroll = () => {
     if (getCurrentScrollPercentage() > 90) {
       let result = data.slice(idx.current, idx.current + 10);
-      setSortData(sortData => sortData.concat(result));
+      setSortData((sortData) => sortData.concat(result));
       idx.current += 10;
     }
   };
@@ -105,7 +106,7 @@ const Page = styled.div`
   overflow: hidden;
 `;
 const PaddingWrap = styled.div`
-  padding: ${props => props.paddingValue};
+  padding: ${(props) => props.paddingValue};
 `;
 const WipDiv = styled.div``;
 const ProductWrap = styled.section``;
@@ -144,7 +145,7 @@ const ProductSortBox = styled.div`
   letter-spacing: 1px;
   color: #4d4d4d;
   outline: none;
-  border-bottom: ${props => (props.click ? "1px solid #32b8a4" : "none")};
+  border-bottom: ${(props) => (props.click ? "1px solid #32b8a4" : "none")};
 
   @media ${device.mobile} {
     width: 48px;
@@ -157,7 +158,7 @@ const ProductSorting = styled.a`
   width: 70px;
   cursor: pointer;
   outline: none;
-  color: ${props => (props.click ? "#4d4d4d" : "#cfcfcf")};
+  color: ${(props) => (props.click ? "#4d4d4d" : "#cfcfcf")};
   :hover {
     color: #4d4d4d;
   }
